@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_nav_context"
+        android:title="Context"
+        android:icon="@drawable/ic_action_context">
+        <menu>
+        </menu>
+    </item>
+    <item
+            android:id="@+id/menu_nav_reports"
+            android:title="Reports"
+            android:icon="@drawable/ic_action_reports">
+        <menu>
+        </menu>
+    </item>
+    <item
+            android:id="@+id/menu_nav_run"
+            android:title="Run custom..."
+            android:icon="@drawable/ic_action_start"/>
+    <item
+            android:id="@+id/menu_nav_settings"
+            android:title="Settings"
+            android:icon="@drawable/ic_action_settings"/>
+    <item
+            android:id="@+id/menu_nav_debug"
+            android:title="Share debug file"
+            android:icon="@drawable/ic_action_debug"/>
+    <item
+            android:id="@+id/menu_nav_reload"
+            android:title="Reload"
+            android:icon="@drawable/ic_action_reload"/>
+</menu>
