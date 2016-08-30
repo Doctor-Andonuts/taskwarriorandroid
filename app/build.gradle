@@ -9,8 +9,8 @@ android {
         applicationId "kvj.taskw"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 6
-        versionName "0.1.4"
+        versionCode 7
+        versionName "0.1.5"
     }
 
     buildTypes {
