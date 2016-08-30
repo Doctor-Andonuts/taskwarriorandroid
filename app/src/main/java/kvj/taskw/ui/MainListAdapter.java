@@ -306,6 +306,11 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
         views.setViewVisibility(R.id.task_annotations, View.GONE);
         views.setViewVisibility(R.id.task_annotations_flag, View.GONE);
         views.setViewVisibility(R.id.task_start_stop_btn, View.GONE);
+
+        Boolean hasInboxTag = false;
+        Boolean hasSomedayTag = false;
+        Boolean hasNextTag = false;
+
         for (Map.Entry<String, String> field : info.fields.entrySet()) {
             if (field.getKey().equalsIgnoreCase("description")) {
                 // Show title
@@ -372,9 +377,6 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
 
                 JSONArray tagArray = json.optJSONArray("tags");
                 if (tagArray != null) {
-                    Boolean hasInboxTag = false;
-                    Boolean hasSomedayTag = false;
-                    Boolean hasNextTag = false;
                     for (int i = 0; i < tagArray.length(); i++) {
                         if (tagArray.opt(i).equals("someday")) {
                             hasSomedayTag = true;
@@ -385,15 +387,6 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
                         if (tagArray.opt(i).equals("next")) {
                             hasNextTag = true;
                         }
-                    }
-                    if(hasSomedayTag) {
-                        views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_indigo_400));
-                    }
-                    if(hasInboxTag) {
-                        views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_purple_A400));
-                    }
-                    if(hasNextTag) {
-                        views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_amber_700));
                     }
                 }
             }
@@ -406,6 +399,18 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
                 }
             }
         }
+
+
+        if(hasSomedayTag) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_indigo_400));
+        }
+        if(hasInboxTag) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_purple_A400));
+        }
+        if(hasNextTag) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_amber_700));
+        }
+
         return result;
     }
 
