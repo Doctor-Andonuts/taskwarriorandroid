@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import kvj.taskw.R;
 import kvj.taskw.data.ReportInfo;
@@ -310,6 +311,9 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
         Boolean hasInboxTag = false;
         Boolean hasSomedayTag = false;
         Boolean hasNextTag = false;
+        Boolean isOverDue = false;
+        Boolean isAlmostDue = false;
+
 
         for (Map.Entry<String, String> field : info.fields.entrySet()) {
             if (field.getKey().equalsIgnoreCase("description")) {
@@ -348,6 +352,23 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
             if (field.getKey().equalsIgnoreCase("due")) {
                 addLabel(context, result, "due", true, R.drawable.ic_label_due,
                          asDate(json.optString("due"), field.getValue(), null));
+
+                DateFormat jsonFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+                jsonFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                if (!TextUtils.isEmpty(json.optString("due"))) {
+                    try {
+                        Date parsedDueDate = jsonFormat.parse(json.optString("due"));
+                        Date now = new Date();
+                        long diff = parsedDueDate.getTime() - now.getTime();
+
+                        if(parsedDueDate.before(now)) {
+                            isOverDue = true;
+                        } else if (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 7) {
+                            isAlmostDue = true;
+                        }
+                    } catch (Exception e) {
+                    }
+                }
             }
             if (field.getKey().equalsIgnoreCase("wait")) {
                 addLabel(context, result, "wait", true, R.drawable.ic_label_wait,
@@ -401,15 +422,19 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ListVi
         }
 
 
-        if(hasSomedayTag) {
-            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_indigo_400));
-        }
-        if(hasInboxTag) {
-            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_purple_A400));
-        }
         if(hasNextTag) {
             views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_amber_700));
+        } else if(hasInboxTag) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_purple_A400));
+        } else if (isOverDue) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_red_400));
+        } else if (isAlmostDue) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_red_900));
+        } else if(hasSomedayTag) {
+            views.setTextColor(R.id.task_description, ContextCompat.getColor(context, R.color.md_indigo_400));
         }
+
+
 
         return result;
     }
