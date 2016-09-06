@@ -7,6 +7,7 @@ import android.net.LocalSocket;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -148,7 +149,25 @@ public class AccountController {
     }
 
     public CharSequence[] taskGetPossibleContexts() {
-        CharSequence[] items = {"none", "home", "work", "errand"};
+        final Pattern linePattern = Pattern.compile("^([A-Za-z0-9\\_]+).([A-Za-z0-9\\_]+).+$");
+
+        final ArrayList<String> result = new ArrayList<>();
+        callTask(new StreamConsumer() {
+            @Override
+            public void eat(String line) {
+                Matcher m = linePattern.matcher(line);
+                if (m.find()) {
+                    String keyName = m.group(1).trim();
+                    String keyValue = m.group(2).trim();
+                    if ("context".equalsIgnoreCase(keyName)) {
+                        result.add(keyValue);
+                    }
+                }
+            }
+        }, errConsumer, "rc.defaultwidth=1000", "show");
+
+        final CharSequence[] items = result.toArray(new CharSequence[result.size()+1]);
+        items[result.size()] = "none";
         return items;
     }
 
