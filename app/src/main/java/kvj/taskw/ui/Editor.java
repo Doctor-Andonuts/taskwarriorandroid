@@ -55,6 +55,8 @@ public class Editor extends Fragment {
         form.add(new TextViewCharSequenceAdapter(R.id.editor_scheduled, ""), App.KEY_EDIT_SCHEDULED);
         form.add(new TextViewCharSequenceAdapter(R.id.editor_until, ""), App.KEY_EDIT_UNTIL);
         form.add(new TextViewCharSequenceAdapter(R.id.editor_recur, ""), App.KEY_EDIT_RECUR);
+        form.add(new TextViewCharSequenceAdapter(R.id.editor_relativeRecurDue, ""), App.KEY_EDIT_RELATIVERECURDUE);
+        form.add(new TextViewCharSequenceAdapter(R.id.editor_relativeRecurWait, ""), App.KEY_EDIT_RELATIVERECURWAIT);
         form.add(new SpinnerIntegerAdapter(R.id.editor_priority, -1), App.KEY_EDIT_PRIORITY);
         form.add(new ImageViewIntegerAdapter(R.id.editor_type_switch, R.drawable.ic_status_pending, R.drawable.ic_status_completed, 0), App.KEY_EDIT_STATUS);
     }

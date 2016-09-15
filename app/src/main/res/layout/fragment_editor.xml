@@ -147,4 +147,31 @@
             style="@style/IconButton"
             android:src="@drawable/ic_action_date"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:hint="RelativeRecurDue"
+                android:id="@+id/editor_relativeRecurDue"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_height="wrap_content"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:hint="RelativeRecurWait"
+                android:id="@+id/editor_relativeRecurWait"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_height="wrap_content"/>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 </LinearLayout>

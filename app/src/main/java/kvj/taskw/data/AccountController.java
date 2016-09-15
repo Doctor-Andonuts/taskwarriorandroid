@@ -985,6 +985,8 @@ public class AccountController {
         intent.putExtra(App.KEY_EDIT_UUID, json.optString("uuid"));
         intent.putExtra(App.KEY_EDIT_DESCRIPTION, json.optString("description"));
         intent.putExtra(App.KEY_EDIT_PROJECT, json.optString("project"));
+        intent.putExtra(App.KEY_EDIT_RELATIVERECURDUE, json.optString("relativeRecurDue"));
+        intent.putExtra(App.KEY_EDIT_RELATIVERECURWAIT, json.optString("relativeRecurWait"));
         JSONArray tags = json.optJSONArray("tags");
         if (null != tags) {
             intent.putExtra(App.KEY_EDIT_TAGS, MainListAdapter.join(" ", MainListAdapter.array2List(tags)));

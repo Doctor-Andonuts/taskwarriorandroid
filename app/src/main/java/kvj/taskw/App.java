@@ -22,6 +22,8 @@ public class App extends org.kvj.bravo7.ng.App<Controller> {
     public static final String KEY_EDIT_WAIT = "editor_wait";
     public static final String KEY_EDIT_SCHEDULED = "editor_scheduled";
     public static final String KEY_EDIT_RECUR = "editor_recur";
+    public static final String KEY_EDIT_RELATIVERECURDUE = "editor_relativerecurdue";
+    public static final String KEY_EDIT_RELATIVERECURWAIT = "editor_relativerecurwait";
     public static final String KEY_EDIT_UNTIL = "editor_until";
     public static final String KEY_EDIT_PRIORITY = "editor_priority";
     public static final int EDIT_REQUEST = 1;

@@ -210,6 +210,12 @@ public class MainActivity extends AppCompatActivity implements Controller.ToastM
                                     MainListAdapter.asDate(json.optString("until"), "", null)),
                             Pair.create(App.KEY_EDIT_RECUR, json.optString("recur")));
                 }
+                if ("relativeRecurDue".equals(type)) {
+                    add(Pair.create(App.KEY_EDIT_RELATIVERECURDUE, json.optString("relativeRecurDue")));
+                }
+                if ("relativeRecurWait".equals(type)) {
+                    add(Pair.create(App.KEY_EDIT_RELATIVERECURWAIT, json.optString("relativeRecurWait")));
+                }
             }
 
             @Override

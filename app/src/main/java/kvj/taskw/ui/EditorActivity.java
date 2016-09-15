@@ -228,6 +228,12 @@ public class EditorActivity extends AppCompatActivity {
             if (App.KEY_EDIT_RECUR.equals(key)) { // Direct
                 changes.add(propertyChange(key, "recur"));
             }
+            if (App.KEY_EDIT_RELATIVERECURDUE.equals(key)) { // Direct
+                changes.add(propertyChange(key, "relativeRecurDue"));
+            }
+            if (App.KEY_EDIT_RELATIVERECURWAIT.equals(key)) { // Direct
+                changes.add(propertyChange(key, "relativeRecurWait"));
+            }
 
             // Normally we would check priorities and only care about the data if they changed.
             // But since we can dynamically add inbox tag, we always have to process priorities.
