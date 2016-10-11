@@ -583,20 +583,21 @@ public class MainActivity extends AppCompatActivity implements Controller.ToastM
                                 builder.setTitle("Select Context");
                                 builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int item) {
-                                        switch (item) {
-                                            case 0:
-                                                setContext("none");
-                                                break;
-                                            case 1:
-                                                setContext("home");
-                                                break;
-                                            case 2:
-                                                setContext("work");
-                                                break;
-                                            case 3:
-                                                setContext("errand");
-                                                break;
-                                        }
+                                        setContext(items[item].toString());
+//                                        switch (item) {
+//                                            case 0:
+//                                                setContext("none");
+//                                                break;
+//                                            case 1:
+//                                                setContext("home");
+//                                                break;
+//                                            case 2:
+//                                                setContext("work");
+//                                                break;
+//                                            case 3:
+//                                                setContext("errand");
+//                                                break;
+//                                        }
                                         refreshContext();
                                         dialog.dismiss();
                                     }
